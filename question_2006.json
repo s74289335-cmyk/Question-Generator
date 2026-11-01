@@ -1,0 +1,20 @@
+{
+  "id": "233e6958-57a7-403c-b98d-fadb93f0ee43",
+  "domain": "Time, Speed & Distance",
+  "difficulty": "Easy",
+  "question": "Two trains are 400 km apart and move towards each other. Train A travels at 50 km/h, Train B at 50 km/h. How long until they meet?",
+  "options": [
+    "5.0373",
+    "1.8197",
+    "4",
+    "3.0769"
+  ],
+  "answer_index": 2,
+  "hidden_derivation": "Relative speed = 50+50 = 100. Time = 400/100 = 4 hours.",
+  "meta": {
+    "type": "tsd",
+    "v1": 50,
+    "v2": 50,
+    "d": 400
+  }
+}

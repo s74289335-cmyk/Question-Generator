@@ -1,0 +1,20 @@
+{
+  "id": "3121ff40-de66-4175-982d-58aa4fec8b96",
+  "domain": "Time, Speed & Distance",
+  "difficulty": "Easy",
+  "question": "Two trains are 300 km apart and move towards each other. Train A travels at 50 km/h, Train B at 50 km/h. How long until they meet?",
+  "options": [
+    "2.0127",
+    "3",
+    "3.0750",
+    "1.1942"
+  ],
+  "answer_index": 1,
+  "hidden_derivation": "Relative speed = 50+50 = 100. Time = 300/100 = 3 hours.",
+  "meta": {
+    "type": "tsd",
+    "v1": 50,
+    "v2": 50,
+    "d": 300
+  }
+}

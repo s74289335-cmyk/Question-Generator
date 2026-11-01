@@ -1,0 +1,35 @@
+{
+  "id": "1f4e1bea-c382-4224-bd45-ccce88eefd66",
+  "domain": "Time, Speed & Distance",
+  "difficulty": "Easy",
+  "question": "Two trains are 320 km apart and move towards each other. Train A travels at 30 km/h, Train B at 50 km/h. How long until they meet?",
+  "options": [
+    "6.2644",
+    "4",
+    "3.9595",
+    "2.4230"
+  ],
+  "answer_index": 1,
+  "hidden_derivation": "Relative speed = 30+50 = 80. Time = 320/80 = 4 hours.",
+  "meta": {
+    "type": "tsd",
+    "v1": 30,
+    "v2": 50,
+    "d": 320,
+    "solver_a": {
+      "value": 4.0,
+      "index": 1,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 4.0,
+      "index": 1,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 4.0,
+      "index": 1,
+      "reason": "Exact equation match"
+    }
+  }
+}

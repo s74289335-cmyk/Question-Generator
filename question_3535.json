@@ -1,0 +1,20 @@
+{
+  "id": "3c2a7af5-76b7-475d-b140-91c9ad04f8ce",
+  "domain": "Time, Speed & Distance",
+  "difficulty": "Easy",
+  "question": "Two trains are 160 km apart and move towards each other. Train A travels at 30 km/h, Train B at 50 km/h. How long until they meet?",
+  "options": [
+    "4.6619",
+    "4.5535",
+    "2",
+    "3.5292"
+  ],
+  "answer_index": 2,
+  "hidden_derivation": "Relative speed = 30+50 = 80. Time = 160/80 = 2 hours.",
+  "meta": {
+    "type": "tsd",
+    "v1": 30,
+    "v2": 50,
+    "d": 160
+  }
+}

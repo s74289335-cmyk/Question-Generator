@@ -1,0 +1,20 @@
+{
+  "id": "5d3a777a-671b-4090-9b04-3c963b4c7edf",
+  "domain": "Time, Speed & Distance",
+  "difficulty": "Easy",
+  "question": "Two trains are 140 km apart and move towards each other. Train A travels at 40 km/h, Train B at 30 km/h. How long until they meet?",
+  "options": [
+    "2",
+    "4.5434",
+    "4.5383",
+    "2.7859"
+  ],
+  "answer_index": 0,
+  "hidden_derivation": "Relative speed = 40+30 = 70. Time = 140/70 = 2 hours.",
+  "meta": {
+    "type": "tsd",
+    "v1": 40,
+    "v2": 30,
+    "d": 140
+  }
+}

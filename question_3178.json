@@ -1,0 +1,20 @@
+{
+  "id": "22348e1c-c6ad-4c22-a559-c3ba685fa9e5",
+  "domain": "Time, Speed & Distance",
+  "difficulty": "Easy",
+  "question": "Two trains are 180 km apart and move towards each other. Train A travels at 40 km/h, Train B at 50 km/h. How long until they meet?",
+  "options": [
+    "4.2872",
+    "4.2655",
+    "2",
+    "3.4237"
+  ],
+  "answer_index": 2,
+  "hidden_derivation": "Relative speed = 40+50 = 90. Time = 180/90 = 2 hours.",
+  "meta": {
+    "type": "tsd",
+    "v1": 40,
+    "v2": 50,
+    "d": 180
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "435940e5-29b8-47d4-84e7-1d1465d395d4",
+  "domain": "Time, Speed & Distance",
+  "difficulty": "Easy",
+  "question": "Two trains are 480 km apart and move towards each other. Train A travels at 60 km/h, Train B at 60 km/h. How long until they meet?",
+  "options": [
+    "4.1113",
+    "4",
+    "3.4224",
+    "2.6171"
+  ],
+  "answer_index": 1,
+  "hidden_derivation": "Relative speed = 60+60 = 120. Time = 480/120 = 4 hours.",
+  "meta": {
+    "type": "tsd",
+    "v1": 60,
+    "v2": 60,
+    "d": 480
+  }
+}

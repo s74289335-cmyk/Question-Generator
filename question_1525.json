@@ -1,0 +1,20 @@
+{
+  "id": "9fcd8d8f-3f13-4334-9e92-66c4b9c2595f",
+  "domain": "Time, Speed & Distance",
+  "difficulty": "Easy",
+  "question": "Two trains are 200 km apart and move towards each other. Train A travels at 40 km/h, Train B at 60 km/h. How long until they meet?",
+  "options": [
+    "2",
+    "1.7535",
+    "1.7029",
+    "3.5631"
+  ],
+  "answer_index": 0,
+  "hidden_derivation": "Relative speed = 40+60 = 100. Time = 200/100 = 2 hours.",
+  "meta": {
+    "type": "tsd",
+    "v1": 40,
+    "v2": 60,
+    "d": 200
+  }
+}

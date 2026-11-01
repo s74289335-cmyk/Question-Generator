@@ -1,0 +1,20 @@
+{
+  "id": "8b0dbb0a-ebcc-482f-874b-12501ec3c3ef",
+  "domain": "Time, Speed & Distance",
+  "difficulty": "Easy",
+  "question": "Two trains are 320 km apart and move towards each other. Train A travels at 40 km/h, Train B at 40 km/h. How long until they meet?",
+  "options": [
+    "1.2044",
+    "2.0132",
+    "4",
+    "4.6664"
+  ],
+  "answer_index": 2,
+  "hidden_derivation": "Relative speed = 40+40 = 80. Time = 320/80 = 4 hours.",
+  "meta": {
+    "type": "tsd",
+    "v1": 40,
+    "v2": 40,
+    "d": 320
+  }
+}

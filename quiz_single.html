@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HydraQuant Quiz</title>
+
+<style>
+/* ------ GLOBAL THEME ------ */
+body {
+    margin: 0;
+    padding: 0;
+    background: #0d0b1f;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    color: #d4caff;
+}
+
+/* ------ CENTER CONTAINER ------ */
+#container {
+    width: 85%;
+    max-width: 650px;
+    background: rgba(34, 0, 59, 0.45);
+    backdrop-filter: blur(14px);
+    padding: 35px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(174, 0, 255, 0.45);
+}
+
+/* ------ HEADING ------ */
+h1 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #e8d7ff;
+    text-shadow: 0 0 8px #a449ff;
+}
+
+/* ------ QUESTION BOX ------ */
+#qbox {
+    background: rgba(66, 0, 109, 0.3);
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 15px;
+    color: #f0e4ff;
+    box-shadow: inset 0 0 12px rgba(185, 0, 255, 0.4);
+}
+
+/* ------ OPTIONS ------ */
+.option {
+    display: block;
+    margin: 12px 0;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.option input {
+    transform: scale(1.3);
+    margin-right: 12px;
+}
+
+/* ------ BUTTONS ------ */
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    margin: 12px 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
+
+#next {
+    background: linear-gradient(135deg, #6a0dad, #b300ff);
+    box-shadow: 0 0 12px #b300ff;
+}
+#next:hover { transform: scale(1.08); }
+
+#cont {
+    background: linear-gradient(135deg, #1e8b4d, #28ff8a);
+    box-shadow: 0 0 12px #28ff8a;
+    display: none;
+}
+#cont:hover { transform: scale(1.08); }
+
+/* ------ FEEDBACK ------ */
+#feedback {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 12px;
+}
+
+/* ------ SOLUTION BOX ------ */
+#solution {
+    display: none;
+    background: rgba(128, 0, 255, 0.2);
+    color: #f1d1ff;
+    padding: 15px;
+    border-left: 5px solid #c267ff;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+/* ------ SCORE ------ */
+#score {
+    font-size: 20px;
+    margin-top: 20px;
+    color: #d7b4ff;
+    text-shadow: 0 0 6px #8b45ff;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+<h1>HydraQuant Smart Quiz</h1>
+
+<div id="qbox"></div>
+
+<button id="next" onclick="checkAnswer()">Next</button>
+<button id="cont" onclick="nextQuestion()">Continue</button>
+
+<p id="score"></p>
+
+</div>
+
+<script>
+const questions = [
+  {
+    "question": "Two trains are 300 km apart and move towards each other. Train A travels at 40 km/h, Train B at 60 km/h. How long until they meet?",
+    "options": [
+      "1.2745",
+      "3",
+      "2.5738",
+      "2.4724"
+    ],
+    "answer": 1,
+    "solution": "Relative speed = 40+60 = 100. Time = 300/100 = 3 hours.",
+    "solver_a": {
+      "value": 3.0,
+      "index": 1,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 3.0,
+      "index": 1,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 3.0,
+      "index": 1,
+      "reason": "Exact equation match"
+    }
+  },
+  {
+    "question": "Two trains are 360 km apart and move towards each other. Train A travels at 60 km/h, Train B at 60 km/h. How long until they meet?",
+    "options": [
+      "3.4394",
+      "5.2202",
+      "0.5274",
+      "3"
+    ],
+    "answer": 3,
+    "solution": "Relative speed = 60+60 = 120. Time = 360/120 = 3 hours.",
+    "solver_a": {
+      "value": 3.0,
+      "index": 3,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 3.0,
+      "index": 3,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 3.0,
+      "index": 3,
+      "reason": "Exact equation match"
+    }
+  },
+  {
+    "question": "Two trains are 220 km apart and move towards each other. Train A travels at 60 km/h, Train B at 50 km/h. How long until they meet?",
+    "options": [
+      "2",
+      "3.2483",
+      "4.3644",
+      "2.2686"
+    ],
+    "answer": 0,
+    "solution": "Relative speed = 60+50 = 110. Time = 220/110 = 2 hours.",
+    "solver_a": {
+      "value": 2.0,
+      "index": 0,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 2.0,
+      "index": 0,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 2.0,
+      "index": 0,
+      "reason": "Exact equation match"
+    }
+  },
+  {
+    "question": "Two trains are 280 km apart and move towards each other. Train A travels at 40 km/h, Train B at 30 km/h. How long until they meet?",
+    "options": [
+      "5.3746",
+      "3.9093",
+      "1.3569",
+      "4"
+    ],
+    "answer": 3,
+    "solution": "Relative speed = 40+30 = 70. Time = 280/70 = 4 hours.",
+    "solver_a": {
+      "value": 4.0,
+      "index": 3,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 4.0,
+      "index": 3,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 4.0,
+      "index": 3,
+      "reason": "Exact equation match"
+    }
+  },
+  {
+    "question": "Two trains are 200 km apart and move towards each other. Train A travels at 40 km/h, Train B at 60 km/h. How long until they meet?",
+    "options": [
+      "0.2375",
+      "2",
+      "0.5105",
+      "4.2038"
+    ],
+    "answer": 1,
+    "solution": "Relative speed = 40+60 = 100. Time = 200/100 = 2 hours.",
+    "solver_a": {
+      "value": 2.0,
+      "index": 1,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 2.0,
+      "index": 1,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 2.0,
+      "index": 1,
+      "reason": "Exact equation match"
+    }
+  },
+  {
+    "question": "Two trains are 180 km apart and move towards each other. Train A travels at 60 km/h, Train B at 30 km/h. How long until they meet?",
+    "options": [
+      "2",
+      "1.3198",
+      "0.3325",
+      "2.9719"
+    ],
+    "answer": 0,
+    "solution": "Relative speed = 60+30 = 90. Time = 180/90 = 2 hours.",
+    "solver_a": {
+      "value": 2.0,
+      "index": 0,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 2.0,
+      "index": 0,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 2.0,
+      "index": 0,
+      "reason": "Exact equation match"
+    }
+  },
+  {
+    "question": "Two trains are 160 km apart and move towards each other. Train A travels at 30 km/h, Train B at 50 km/h. How long until they meet?",
+    "options": [
+      "3.0545",
+      "4.5722",
+      "1.6260",
+      "2"
+    ],
+    "answer": 3,
+    "solution": "Relative speed = 30+50 = 80. Time = 160/80 = 2 hours.",
+    "solver_a": {
+      "value": 2.0,
+      "index": 3,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 2.0,
+      "index": 3,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 2.0,
+      "index": 3,
+      "reason": "Exact equation match"
+    }
+  },
+  {
+    "question": "Two trains are 240 km apart and move towards each other. Train A travels at 30 km/h, Train B at 30 km/h. How long until they meet?",
+    "options": [
+      "4.5154",
+      "4",
+      "1.5107",
+      "2.9664"
+    ],
+    "answer": 1,
+    "solution": "Relative speed = 30+30 = 60. Time = 240/60 = 4 hours.",
+    "solver_a": {
+      "value": 4.0,
+      "index": 1,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 4.0,
+      "index": 1,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 4.0,
+      "index": 1,
+      "reason": "Exact equation match"
+    }
+  },
+  {
+    "question": "Two trains are 160 km apart and move towards each other. Train A travels at 30 km/h, Train B at 50 km/h. How long until they meet?",
+    "options": [
+      "2.9242",
+      "2.6149",
+      "4.4948",
+      "2"
+    ],
+    "answer": 3,
+    "solution": "Relative speed = 30+50 = 80. Time = 160/80 = 2 hours.",
+    "solver_a": {
+      "value": 2.0,
+      "index": 3,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 2.0,
+      "index": 3,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 2.0,
+      "index": 3,
+      "reason": "Exact equation match"
+    }
+  },
+  {
+    "question": "Two trains are 240 km apart and move towards each other. Train A travels at 30 km/h, Train B at 30 km/h. How long until they meet?",
+    "options": [
+      "6.3480",
+      "5.8604",
+      "4",
+      "4.6374"
+    ],
+    "answer": 2,
+    "solution": "Relative speed = 30+30 = 60. Time = 240/60 = 4 hours.",
+    "solver_a": {
+      "value": 4.0,
+      "index": 2,
+      "reason": "Algebraic"
+    },
+    "solver_b": {
+      "value": 4.0,
+      "index": 2,
+      "reason": "Generator-consistency"
+    },
+    "solver_c": {
+      "value": 4.0,
+      "index": 2,
+      "reason": "Exact equation match"
+    }
+  }
+];
+let index = 0, score = 0;
+
+function loadQ() {
+    const q = questions[index];
+    let h = `<h3>Question ${index+1} / ${questions.length}</h3><p>${q.question}</p>`;
+    q.options.forEach((op, i) => {
+        h += `<label class='option'><input type='radio' name='opt' value='${i}'> ${op}</label>`;
+    });
+    h += "<p id='feedback'></p><div id='solution'></div>";
+
+    document.getElementById("qbox").innerHTML = h;
+    document.getElementById("cont").style.display = "none";
+    document.getElementById("next").style.display = "inline-block";
+}
+
+function checkAnswer() {
+    const sel = document.querySelector("input[name='opt']:checked");
+    if (!sel) return alert("Please select an answer!");
+
+    const ans = parseInt(sel.value);
+    const cor = questions[index].answer;
+    const fb = document.getElementById("feedback");
+    const sol = document.getElementById("solution");
+
+    if (ans === cor) {
+        fb.style.color = "#28ff8a";
+        fb.textContent = "Correct!";
+        sol.style.display = "none";
+        score++;
+    } else {
+        fb.style.color = "#ff6eb7";
+        fb.textContent = "Wrong!";
+        sol.style.display = "block";
+
+        sol.innerHTML = `
+            <h4>Optimal Solution</h4>
+            <p>${questions[index].solution}</p>
+            <button onclick="toggleBreakdown()"
+                style="margin-top:10px; padding:8px 14px; background:#6a0dad; border:none; color:white; border-radius:6px;">
+                Show Solver Breakdown ▼
+            </button>
+            <div id="breakdown" style="display:none; margin-top:10px; text-align:left; color:#e0caff;">
+                <p><b>Solver A:</b> ${questions[index].solver_a.reason} → ${questions[index].solver_a.value}</p>
+                <p><b>Solver B:</b> ${questions[index].solver_b.reason} → ${questions[index].solver_b.value}</p>
+                <p><b>Solver C:</b> ${questions[index].solver_c.reason} → ${questions[index].solver_c.value}</p>
+            </div>
+        `;
+    }
+
+    document.getElementById("next").style.display = "none";
+    document.getElementById("cont").style.display = "inline-block";
+}
+
+function toggleBreakdown() {
+    const box = document.getElementById("breakdown");
+    if (!box) return;
+    box.style.display = (box.style.display === "none") ? "block" : "none";
+}
+
+function nextQuestion() {
+    index++;
+    if (index >= questions.length) return finish();
+    loadQ();
+}
+
+function finish() {
+    document.getElementById("qbox").style.display = "none";
+    document.getElementById("next").style.display = "none";
+    document.getElementById("cont").style.display = "none";
+
+    document.getElementById("score").innerHTML =
+        `Quiz Completed!<br>Score: ${score} / ${questions.length}`;
+}
+
+loadQ();
+</script>
+
+</body>
+</html>

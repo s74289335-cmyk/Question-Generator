@@ -1,0 +1,20 @@
+{
+  "id": "d3e3bd6d-289d-4673-a68f-c4fa9e5337b2",
+  "domain": "Time, Speed & Distance",
+  "difficulty": "Easy",
+  "question": "Two trains are 330 km apart and move towards each other. Train A travels at 60 km/h, Train B at 50 km/h. How long until they meet?",
+  "options": [
+    "0.4191",
+    "1.0494",
+    "3",
+    "4.7942"
+  ],
+  "answer_index": 2,
+  "hidden_derivation": "Relative speed = 60+50 = 110. Time = 330/110 = 3 hours.",
+  "meta": {
+    "type": "tsd",
+    "v1": 60,
+    "v2": 50,
+    "d": 330
+  }
+}
